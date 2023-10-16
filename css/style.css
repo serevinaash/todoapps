@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Pacifico&family=Quicksand:wght@500;700&display=swap');
 
 * {
     box-sizing: border-box;
+}
+h1{
+    font-family: 'Pacifico', cursive;
 }
 
 html, body {
@@ -12,22 +16,33 @@ html, body {
 }
 
 header {
-    background: #5F30E2;
-    padding: 16px;
-    color: white;
+    background: #D2E0FB;
+    padding: 12px;
+    color: black;
+}
+.gambar {
+    width: 300px;
+    border-radius: 10px;
+
+}
+.gambar-1{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
 .wrapper .container {
+    
     width: 1024px;
     border-radius: 8px;
     margin: 16px;
-    background: #F8F9FA;
+    background: #F9F3CC;
     padding: 16px;
     flex-grow: 1;
     height: fit-content;
@@ -53,10 +68,10 @@ header {
 
 .form {
     display: flex;
-    padding: 16px;
     flex-direction: column;
-    height: 300px;
-    border-radius: 16px;
+    max-width: 300px; 
+    padding: 8px;
+    border-radius: 8px; 
 }
 
 .form-group {
@@ -77,7 +92,7 @@ header {
 input[type=text], input[type=date] {
     font-family: Raleway, sans-serif;
     background: #F5F1FF;
-    border: 2px solid #9475EA;
+    border: 2px solid #8EACCD;
     border-radius: 8px;
     padding: 16px;
     box-sizing: border-box;
@@ -90,7 +105,7 @@ input[type=text], input[type=date] {
     font-family: Raleway, sans-serif;
     border-radius: 16px;
     padding: 12px 24px;
-    border: 2px solid #5F30E2;
+    border: 2px solid #8EACCD;
     color: black;
     font-size: 24px;
     margin-top: auto;
@@ -99,7 +114,7 @@ input[type=text], input[type=date] {
 }
 
 .btn-submit:hover {
-    background: #5F30E2;
+    background: #8EACCD;
     color: white;
 }
 
@@ -170,18 +185,25 @@ input[type=text], input[type=date], .btn-submit:focus {
 
 @media only screen and (max-width: 1024px) {
     .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 0;
     }
 
     .wrapper .container {
         width: 100%;
+        display: flex;
+        flex-direction: rowl
     }
 
     .list-item {
         width: 90%;
     }
-
     .form {
-        width: 100%;
+      width: 50%;
+    }
+    .gambar{
+        width: 100px;
     }
 }

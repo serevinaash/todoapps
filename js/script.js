@@ -1,5 +1,7 @@
 const todos = [];
 const RENDER_EVENT = 'render-todo';
+
+//control when send form to web
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('form');
   submitForm.addEventListener('submit', function (event) {
@@ -7,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     addTodo();
   });
 });
+
+// add to do
 function addTodo() {
   const textTodo = document.getElementById('title').value;
   const timestamp = document.getElementById('date').value;
@@ -15,12 +19,16 @@ function addTodo() {
   const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   todos.push(todoObject);
  
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(RENDER_EVENT)); //update, must render again
+  //render for show
 }  
+
+//create id unique 
 function generateId() {
   return +new Date();
 }
  
+//create task
 function generateTodoObject(id, task, timestamp, isCompleted) {
   return {
     id,
@@ -31,15 +39,17 @@ function generateTodoObject(id, task, timestamp, isCompleted) {
 }
 document.addEventListener(RENDER_EVENT, function () {
   const uncompletedTODOList = document.getElementById('todos');
-  uncompletedTODOList.innerHTML = '';
- 
+  uncompletedTODOList.innerHTML = ''; //delete all task for push new task
+
   for (const todoItem of todos) {
     const todoElement = makeTodo(todoItem);
     if (!todoItem.isCompleted) {
       uncompletedTODOList.append(todoElement);
+      //append for add uncomplete to todoelement
     }
   }
 });
+
 function makeTodo(todoObject) {
   const textTitle = document.createElement('h2');
   textTitle.innerText = todoObject.task;
