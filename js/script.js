@@ -10,6 +10,8 @@
  */
 const todos = [];
 const RENDER_EVENT = 'render-todo';
+const SAVED_EVENT = 'saved-todo';
+const STORAGE_KEY = 'TODO_APPS';
 
 function generateId() {
   return +new Date();
@@ -21,7 +23,7 @@ function generateTodoObject(id, task, timestamp, isCompleted) {
     task,
     timestamp,
     isCompleted
-  }
+  };
 }
 
 function findTodo(todoId) {
@@ -40,6 +42,49 @@ function findTodoIndex(todoId) {
     }
   }
   return -1;
+}
+
+
+/**
+ * Fungsi ini digunakan untuk memeriksa apakah localStorage didukung oleh browser atau tidak
+ *
+ * @returns boolean
+ */
+function isStorageExist() /* boolean */ {
+  if (typeof (Storage) === undefined) {
+    alert('Browser kamu tidak mendukung local storage');
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Fungsi ini digunakan untuk menyimpan data ke localStorage
+ * berdasarkan KEY yang sudah ditetapkan sebelumnya.
+ */
+function saveData() {
+  if (isStorageExist()) {
+    const parsed /* string */ = JSON.stringify(todos);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
+}
+
+/**
+ * Fungsi ini digunakan untuk memuat data dari localStorage
+ * Dan memasukkan data hasil parsing ke variabel {@see todos}
+ */
+function loadDataFromStorage() {
+  const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
+  let data = JSON.parse(serializedData);
+
+  if (data !== null) {
+    for (const todo of data) {
+      todos.push(todo);
+    }
+  }
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
 function makeTodo(todoObject) {
@@ -86,6 +131,7 @@ function makeTodo(todoObject) {
 
     container.append(checkButton);
   }
+
   return container;
 }
 
@@ -94,18 +140,21 @@ function addTodo() {
   const timestamp = document.getElementById('date').value;
 
   const generatedID = generateId();
-  const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false)
+  const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false);
   todos.push(todoObject);
+
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function addTaskToCompleted(todoId /* HTMLELement */) {
-
   const todoTarget = findTodo(todoId);
+
   if (todoTarget == null) return;
 
   todoTarget.isCompleted = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function removeTaskFromCompleted(todoId /* HTMLELement */) {
@@ -115,26 +164,36 @@ function removeTaskFromCompleted(todoId /* HTMLELement */) {
 
   todos.splice(todoTarget, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function undoTaskFromCompleted(todoId /* HTMLELement */) {
-  const todoTarget = findTodo(todoId);
 
+  const todoTarget = findTodo(todoId);
   if (todoTarget == null) return;
 
   todoTarget.isCompleted = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
   const submitForm /* HTMLFormElement */ = document.getElementById('form');
 
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addTodo();
   });
+
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  }
 });
 
+document.addEventListener(SAVED_EVENT, () => {
+  console.log('Data berhasil di simpan.');
+});
 
 document.addEventListener(RENDER_EVENT, function () {
   const uncompletedTODOList = document.getElementById('todos');
