@@ -105,9 +105,9 @@ input[type=text], input[type=date] {
     font-family: Raleway, sans-serif;
     border-radius: 16px;
     padding: 12px 24px;
-    border: 2px solid #001858;
+    border: 2px solid #f582ae;
     color: black;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: auto;
     align-self: flex-end;
     cursor: pointer;
@@ -187,6 +187,17 @@ input[type=text], input[type=date], .btn-submit:focus {
     .wrapper .container {
         width: 100%;
     }
+    .gambar {
+        width: 300px;
+        border-radius: 10px;
+    
+    }
+    .gambar-1{
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    
 
     .list-item {
         width: 90%;
