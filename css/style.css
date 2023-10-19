@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Pacifico&family=Quicksand:wght@500;700&display=swap');
 
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 h1{
     font-family: 'Pacifico', cursive;
+    font-color: #001858;
 }
 
 html, body {
@@ -13,16 +14,16 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fef6e4;
+    background-color: #f3d2c1;
 }
 
 header {
-    background: #fef6e4;
-    padding: 12px;
-    color: black;
+    background: #f3d2c1;
+    padding: 16px;
 }
+
 .gambar {
-    width: 300px;
+    width: 500px;
     border-radius: 10px;
 
 }
@@ -31,24 +32,21 @@ header {
     justify-content: center;
     align-items: center; 
 }
-
 .wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
 .wrapper .container {
-    
     width: 1024px;
     border-radius: 8px;
     margin: 16px;
-    background: #8bd3dd;
+    background: #fef6e4;
     padding: 16px;
     flex-grow: 1;
     height: fit-content;
 }
-
 
 .item {
     border-radius: 16px;
@@ -67,12 +65,13 @@ header {
     margin-top: 5px;
 }
 
+
 .form {
     display: flex;
+    padding: 16px;
     flex-direction: column;
-    max-width: 300px; 
-    padding: 8px;
-    border-radius: 8px; 
+    height: 300px;
+    border-radius: 16px;
 }
 
 .form-group {
@@ -82,7 +81,7 @@ header {
 
 .form-group label {
     margin-bottom: 4px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: lighter;
 }
 
@@ -92,28 +91,30 @@ header {
 
 input[type=text], input[type=date] {
     font-family: Raleway, sans-serif;
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #8EACCD;
-    border-radius: 3px;
-    
+    background: #F5F1FF;
+    border: 2px solid #001858;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    font-size: 24px;
 }
 
 .btn-submit {
     width: fit-content;
     font-family: Raleway, sans-serif;
-    background-color: #f582ae;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
+    border-radius: 16px;
+    padding: 12px 24px;
+    border: 2px solid #001858;
+    color: black;
+    font-size: 24px;
+    margin-top: auto;
+    align-self: flex-end;
     cursor: pointer;
-    font-weight: bold;
 }
 
 .btn-submit:hover {
-    background: #8EACCD;
+    background: #5F30E2;
     color: white;
 }
 
@@ -130,11 +131,10 @@ input[type=text], input[type=date], .btn-submit:focus {
 }
 
 .check-button {
-    width: 40px;
-    height: 40px;
-
     background: url('../assets/check-outline.svg');
     background-size: contain;
+    width: 40px;
+    height: 40px;
     margin-left: auto;
     cursor: pointer;
     border: none;
@@ -146,11 +146,10 @@ input[type=text], input[type=date], .btn-submit:focus {
 }
 
 .trash-button {
-    width: 40px;
-    height: 40px;
-
     background: url('../assets/trash-outline.svg');
     background-size: contain;
+    width: 40px;
+    height: 40px;
     margin-left: 16px;
     cursor: pointer;
     border: none;
@@ -162,11 +161,10 @@ input[type=text], input[type=date], .btn-submit:focus {
 }
 
 .undo-button {
-    width: 40px;
-    height: 40px;
-
     background: url('../assets/undo-ouline.svg');
     background-size: contain;
+    width: 40px;
+    height: 40px;
     margin-left: auto;
     cursor: pointer;
     border: none;
@@ -181,28 +179,20 @@ input[type=text], input[type=date], .btn-submit:focus {
     outline: none;
 }
 
-
 @media only screen and (max-width: 1024px) {
     .wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         margin: 0;
     }
 
     .wrapper .container {
         width: 100%;
-        display: flex;
-        flex-direction: rowl
     }
 
     .list-item {
         width: 90%;
     }
+
     .form {
-      width: 50%;
-    }
-    .gambar{
-        width: 100px;
+        width: 100%;
     }
 }
